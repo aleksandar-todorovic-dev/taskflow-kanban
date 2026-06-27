@@ -5,6 +5,7 @@ import AddColumnButton from "./components/AddColumnButton";
 import Column, { NewColumn } from "./components/Column";
 import { useBoard } from "./context";
 import { Board, Header, List } from "./styles";
+import { reorderList, switchCards } from "./utils/listUtils";
 
 const AddNewColumn = () => {
   const [isAddingColumn, setIsAddingColumn] = useState(false);
@@ -31,11 +32,54 @@ const AddNewColumn = () => {
 };
 
 function App() {
-  const { columns } = useBoard();
+  const { columns, setColumns } = useBoard();
 
   const onDragEnd = (result: DropResult) => {
-    // Temporary placeholder until real column/card reorder logic is connected.
-    console.log(result);
+    const { source, destination, type } = result;
+
+    // No destination means the item was dropped outside a valid droppable area.
+    if (!destination) {
+      return;
+    }
+
+    const isSamePosition =
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index;
+
+    // Ignore drops that do not actually change the item's position.
+    if (isSamePosition) {
+      return;
+    }
+
+    if (type === "column") {
+      // Reorder columns horizontally on the board.
+      setColumns(reorderList(columns, source.index, destination.index));
+      return;
+    }
+
+    const sourceColumnIndex = columns.findIndex(
+      (column) => column.id === source.droppableId,
+    );
+
+    const destinationColumnIndex = columns.findIndex(
+      (column) => column.id === destination.droppableId,
+    );
+
+    // Guard against invalid drag data before updating board state.
+    if (sourceColumnIndex === -1 || destinationColumnIndex === -1) {
+      return;
+    }
+
+    // Move a card either within the same column or between different columns.
+    setColumns(
+      switchCards(
+        columns,
+        sourceColumnIndex,
+        source.index,
+        destinationColumnIndex,
+        destination.index,
+      ),
+    );
   };
 
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface InputProps {
-  readonly isEditing?: boolean;
+  readonly $isEditing?: boolean;
 }
 
 export const Container = styled.div`
@@ -36,11 +36,12 @@ export const Input = styled.textarea<InputProps>`
   color: #172b4d;
 
   /* Switches between read-like styling and active edit styling. */
-  background-color: ${({ isEditing }) => (isEditing ? "#fff" : "transparent")};
+  background-color: ${({ $isEditing }) =>
+    $isEditing ? "#fff" : "transparent"};
   border: none;
   border-radius: 3px;
-  box-shadow: ${({ isEditing }) =>
-    isEditing ? "inset 0 0 0 2px #0079bf" : "none"};
+  box-shadow: ${({ $isEditing }) =>
+    $isEditing ? "inset 0 0 0 2px #0079bf" : "none"};
 
   resize: none;
   outline: none;

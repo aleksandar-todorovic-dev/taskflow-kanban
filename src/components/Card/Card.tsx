@@ -30,6 +30,7 @@ export const NewCard: FC<PropsWithChildren<NewCardProps>> = ({
 
   useEffect(() => {
     if (ref.current) {
+      // Auto-resize the textarea as the user types.
       ref.current.style.height = "auto";
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
@@ -40,6 +41,7 @@ export const NewCard: FC<PropsWithChildren<NewCardProps>> = ({
       event.preventDefault();
 
       if (currentTitle.trim()) {
+        // Generate a unique card id and pass the final title back to the parent.
         onSuccess(uuidv4(), currentTitle.trim());
       }
     }
@@ -76,6 +78,7 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
 
   useClickOutside(ref, () => {
     if (isEditing) {
+      // Cancel editing and restore the original card title.
       setCurrentTitle(title);
       setIsEditing(false);
     }
@@ -83,6 +86,7 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
 
   useEffect(() => {
     if (isEditing) {
+      // Focus and select the current title when edit mode starts.
       ref.current?.focus();
       ref.current?.select();
     }
@@ -90,6 +94,7 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
 
   useEffect(() => {
     if (ref.current) {
+      // Keep the textarea height in sync with its content.
       ref.current.style.height = "auto";
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
@@ -129,7 +134,7 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
           {isEditing && (
             <Input
               ref={ref}
-              isEditing
+              $isEditing
               rows={1}
               value={currentTitle}
               spellCheck={false}
