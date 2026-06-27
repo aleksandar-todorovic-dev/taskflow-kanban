@@ -15,6 +15,7 @@ import {
 import { BoardContext } from "./BoardContext";
 
 const BoardProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  // Board state is persisted in localStorage so columns and cards survive page refreshes.
   const [columns, setColumns] = useLocalStorage<Column[]>("board", []);
 
   const addColumn = useCallback(
@@ -59,6 +60,7 @@ const BoardProvider: React.FC<PropsWithChildren> = ({ children }) => {
     [columns, setColumns],
   );
 
+  // Memoizes the context value to avoid recreating the object on every render.
   const value = useMemo(
     () => ({
       columns,
