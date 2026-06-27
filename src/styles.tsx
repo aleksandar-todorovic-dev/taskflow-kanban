@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface HeaderButtonProps {
+  readonly $variant?: "primary" | "secondary";
+}
+
 export const Board = styled.div`
   position: relative;
   flex: 1;
@@ -61,8 +65,16 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  gap: 16px;
+  padding: 10px 20px;
   color: #172b4d;
+
+  @media (max-width: 480px) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
 `;
 
 export const HeaderTitle = styled.h1`
@@ -70,6 +82,62 @@ export const HeaderTitle = styled.h1`
   line-height: 24px;
   font-weight: 700;
   margin: 0;
+`;
+
+export const HeaderActions = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+`;
+
+export const HeaderButton = styled.button<HeaderButtonProps>`
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  min-height: 34px;
+  padding: 8px 12px;
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease,
+    color 120ms ease;
+
+  ${({ $variant = "primary" }) =>
+    $variant === "secondary"
+      ? `
+        background-color: #f1f2f4;
+        color: #172b4d;
+      `
+      : `
+        background-color: #0c66e4;
+        color: #fff;
+      `}
+
+  &:hover {
+    ${({ $variant = "primary" }) =>
+      $variant === "secondary"
+        ? `
+          background-color: #dcdfe4;
+        `
+        : `
+          background-color: #0055cc;
+        `}
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0c66e4;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 480px) {
+    flex: 1 1 130px;
+  }
 `;
 
 export const List = styled.div`

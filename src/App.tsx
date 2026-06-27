@@ -4,12 +4,15 @@ import { DragDropContext, Droppable, type DropResult } from "@hello-pangea/dnd";
 import AddColumnButton from "./components/AddColumnButton";
 import Column, { NewColumn } from "./components/Column";
 import { useBoard } from "./context";
+import { createDemoBoard } from "./demoBoard";
 import {
   Board,
   EmptyState,
   EmptyStateText,
   EmptyStateTitle,
   Header,
+  HeaderActions,
+  HeaderButton,
   HeaderTitle,
   List,
 } from "./styles";
@@ -94,6 +97,18 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <Header>
         <HeaderTitle>Trello Clone</HeaderTitle>
+        <HeaderActions>
+          <HeaderButton type="button" onClick={() => setColumns(createDemoBoard())}>
+            Load demo board
+          </HeaderButton>
+          <HeaderButton
+            type="button"
+            $variant="secondary"
+            onClick={() => setColumns([])}
+          >
+            Reset board
+          </HeaderButton>
+        </HeaderActions>
       </Header>
 
       <Board>
