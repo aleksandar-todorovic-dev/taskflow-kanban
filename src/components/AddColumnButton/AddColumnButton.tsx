@@ -15,7 +15,7 @@ const AddColumnButton: FC<PropsWithChildren<Props>> = ({
   isFirst,
 }) => {
   return (
-    <Container onClick={onClick}>
+    <Container type="button" onClick={onClick}>
       <IconContainer>
         <PlusIcon />
       </IconContainer>

@@ -143,7 +143,11 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
             />
           )}
 
-          <DeleteButton onClick={() => deleteCard(columnId, id)}>
+          <DeleteButton
+            type="button"
+            aria-label={`Delete card ${title}`}
+            onClick={() => deleteCard(columnId, id)}
+          >
             <TrashIcon />
           </DeleteButton>
         </Container>

@@ -72,7 +72,8 @@ export const Input = styled.textarea<InputProps>`
   }
 
   &:focus {
-    outline: none;
+    outline: 2px solid #0079bf;
+    outline-offset: 2px;
   }
 `;
 
@@ -93,9 +94,13 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    outline: none;
     background-color: rgba(9, 30, 66, 0.08);
     color: #172b4d;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0079bf;
+    outline-offset: 2px;
   }
 `;
 
@@ -123,5 +128,10 @@ export const DeleteButton = styled.button`
     opacity: 1;
     color: #172b4d;
     background-color: rgba(9, 30, 66, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0079bf;
+    outline-offset: 2px;
   }
 `;

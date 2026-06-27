@@ -150,7 +150,11 @@ const Column: FC<ColumnProps> = ({ id, title, cards, currentIndex }) => {
               />
             )}
 
-            <DeleteButton onClick={() => deleteColumn(id)}>
+            <DeleteButton
+              type="button"
+              aria-label={`Delete column ${title}`}
+              onClick={() => deleteColumn(id)}
+            >
               <TrashIcon />
             </DeleteButton>
           </Header>
@@ -185,7 +189,7 @@ const Column: FC<ColumnProps> = ({ id, title, cards, currentIndex }) => {
               onDismiss={() => setIsAddingCard(false)}
             />
           ) : (
-            <Button onClick={() => setIsAddingCard(true)}>
+            <Button type="button" onClick={() => setIsAddingCard(true)}>
               <span>Add a card</span>
             </Button>
           )}

@@ -44,11 +44,15 @@ export const Input = styled.textarea<InputProps>`
     $isEditing ? "inset 0 0 0 2px #0079bf" : "none"};
 
   resize: none;
-  outline: none;
   font-size: 14px;
   line-height: 20px;
   padding: 0;
   display: block;
+
+  &:focus {
+    outline: 2px solid #0079bf;
+    outline-offset: 2px;
+  }
 `;
 
 /* Invisible overlay used to enter card title edit mode. */
@@ -70,7 +74,8 @@ export const DeleteButton = styled.button`
   cursor: pointer;
 
   /* Reveal the delete button only when the card is hovered. */
-  ${Container}:hover & {
+  ${Container}:hover &,
+  &:focus-visible {
     opacity: 0.8;
   }
 
@@ -78,5 +83,10 @@ export const DeleteButton = styled.button`
     opacity: 1;
     color: #172b4d;
     background-color: rgba(9, 30, 66, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0079bf;
+    outline-offset: 2px;
   }
 `;

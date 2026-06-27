@@ -29,8 +29,12 @@ export const Container = styled.button`
 
   &:hover,
   &:focus {
-    outline: none;
     background-color: hsla(0, 0%, 100%, 0.32);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
   }
 `;
 

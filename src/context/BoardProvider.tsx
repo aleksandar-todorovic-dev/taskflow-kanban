@@ -14,50 +14,94 @@ import {
 
 import { BoardContext } from "./BoardContext";
 
+const isCard = (value: unknown): value is Card => {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const card = value as Partial<Card>;
+
+  return typeof card.id === "string" && typeof card.title === "string";
+};
+
+const isColumn = (value: unknown): value is Column => {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const column = value as Partial<Column>;
+
+  return (
+    typeof column.id === "string" &&
+    typeof column.title === "string" &&
+    Array.isArray(column.cards) &&
+    column.cards.every(isCard)
+  );
+};
+
+const isColumnArray = (value: unknown): value is Column[] => {
+  return Array.isArray(value) && value.every(isColumn);
+};
+
 const BoardProvider: React.FC<PropsWithChildren> = ({ children }) => {
   // Board state is persisted in localStorage so columns and cards survive page refreshes.
-  const [columns, setColumns] = useLocalStorage<Column[]>("board", []);
+  const [columns, setColumns] = useLocalStorage<Column[]>(
+    "board",
+    [],
+    isColumnArray,
+  );
 
   const addColumn = useCallback(
     (id: string, title: string) => {
-      setColumns([...columns, { id, title, cards: [] }]);
+      setColumns((previousColumns) => [
+        ...previousColumns,
+        { id, title, cards: [] },
+      ]);
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   const updateColumn = useCallback(
     (id: string, title: string) => {
-      setColumns(updateColumnById(columns, { id, title }));
+      setColumns((previousColumns) =>
+        updateColumnById(previousColumns, { id, title }),
+      );
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   const deleteColumn = useCallback(
     (id: string) => {
-      setColumns(deleteColumnById(columns, id));
+      setColumns((previousColumns) => deleteColumnById(previousColumns, id));
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   const addCard = useCallback(
     (newCard: Card, columnId: string) => {
-      setColumns(addCardToColumn(columns, columnId, newCard));
+      setColumns((previousColumns) =>
+        addCardToColumn(previousColumns, columnId, newCard),
+      );
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   const updateCard = useCallback(
     (newCard: Card, columnId: string) => {
-      setColumns(updateCardById(columns, columnId, newCard));
+      setColumns((previousColumns) =>
+        updateCardById(previousColumns, columnId, newCard),
+      );
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   const deleteCard = useCallback(
     (columnId: string, cardId: string) => {
-      setColumns(deleteCardById(columns, columnId, cardId));
+      setColumns((previousColumns) =>
+        deleteCardById(previousColumns, columnId, cardId),
+      );
     },
-    [columns, setColumns],
+    [setColumns],
   );
 
   // Memoizes the context value to avoid recreating the object on every render.
