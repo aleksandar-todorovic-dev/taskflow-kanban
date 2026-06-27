@@ -4,7 +4,15 @@ import { DragDropContext, Droppable, type DropResult } from "@hello-pangea/dnd";
 import AddColumnButton from "./components/AddColumnButton";
 import Column, { NewColumn } from "./components/Column";
 import { useBoard } from "./context";
-import { Board, Header, List } from "./styles";
+import {
+  Board,
+  EmptyState,
+  EmptyStateText,
+  EmptyStateTitle,
+  Header,
+  HeaderTitle,
+  List,
+} from "./styles";
 import { reorderList, switchCards } from "./utils/listUtils";
 
 const AddNewColumn = () => {
@@ -84,7 +92,9 @@ function App() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Header />
+      <Header>
+        <HeaderTitle>Trello Clone</HeaderTitle>
+      </Header>
 
       <Board>
         <Droppable droppableId="board" direction="horizontal" type="column">
@@ -104,6 +114,13 @@ function App() {
             </List>
           )}
         </Droppable>
+
+        {columns.length === 0 && (
+          <EmptyState>
+            <EmptyStateTitle>No lists yet</EmptyStateTitle>
+            <EmptyStateText>Create your first list to start a board.</EmptyStateText>
+          </EmptyState>
+        )}
 
         <AddNewColumn />
       </Board>
