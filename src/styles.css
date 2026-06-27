@@ -1,3 +1,4 @@
+/* Global reset keeps spacing and sizing predictable across the app. */
 * {
   margin: 0;
   padding: 0;
@@ -6,17 +7,20 @@
   font-family: sans-serif;
 }
 
+/* Ensure the app can stretch to the full viewport height. */
 html,
 body {
   height: 100%;
 }
 
+/* Root layout uses flex so the main app structure can fill available space. */
 #root {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
+/* Temporary board background used for the initial project layout. */
 body {
   background: rgb(2, 0, 36);
   background: linear-gradient(

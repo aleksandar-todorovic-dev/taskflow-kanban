@@ -1,4 +1,5 @@
-
+// Simple SVG React component used to render a plus icon.
+// It can be reused anywhere we need an "add" action visually represented.
 const PlusIcon = () => {
   return (
     <svg
@@ -8,6 +9,11 @@ const PlusIcon = () => {
       height={20}
       stroke="currentColor"
     >
+      {/*
+        The path draws the actual plus shape.
+        "currentColor" lets the icon inherit the text color from its parent,
+        which makes it easy to style through CSS or styled-components.
+      */}
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

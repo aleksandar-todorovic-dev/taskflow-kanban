@@ -1,7 +1,9 @@
+/* Use border-box sizing globally to make layout dimensions easier to reason about. */
 * {
   box-sizing: border-box;
 }
 
+/* Base page styles shared by the whole app. */
 body {
   margin: 0;
   font-family:

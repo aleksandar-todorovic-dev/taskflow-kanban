@@ -1,4 +1,5 @@
-
+// Simple SVG React component used for delete/remove actions.
+// Although named TrashIcon, this SVG currently renders an "X" shape.
 const TrashIcon = () => {
   return (
     <svg
@@ -8,6 +9,10 @@ const TrashIcon = () => {
       width={16}
       height={16}
     >
+      {/*
+        The path draws two diagonal lines that form an "X".
+        Using currentColor allows the icon to inherit its color from the parent element.
+      */}
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
