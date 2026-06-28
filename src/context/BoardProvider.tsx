@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import type { PropsWithChildren } from "react";
 
 import type { Card, Column } from "../types";
-import useLocalStorage from "../hooks/UseLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 import {
   addCardToColumn,
