@@ -413,8 +413,8 @@ Non-JSX files use `.ts`, while React component files that render JSX use `.tsx`.
 Clone the repository:
 
 ```bash
-git clone https://github.com/aleksandar-todorovic-dev/trello-clone.git
-cd trello-clone
+git clone https://github.com/aleksandar-todorovic-dev/taskflow-kanban.git
+cd taskflow-kanban
 ```
 
 Install dependencies:
