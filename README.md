@@ -1,47 +1,39 @@
 # TaskFlow
 
-TaskFlow is a polished Trello-style Kanban board built with React, TypeScript, Vite, styled-components, and `@hello-pangea/dnd`.
+**TaskFlow** is a polished Trello-style Kanban board built with **React**, **TypeScript**, **Vite**, **styled-components**, and `@hello-pangea/dnd`.
 
 It started as a course-based Trello clone and was then cleaned up, modernized, and shaped into a portfolio-ready mini product. The project focuses on practical React + TypeScript fundamentals: typed data models, reusable components, custom hooks, Context-based state management, drag-and-drop interactions, localStorage persistence, responsive UI, and product-level polish.
 
----
-
-## Current Status
-
-TaskFlow is complete enough for portfolio packaging, screenshots, deployment, and GitHub presentation.
-
-Implemented and validated:
-
-- core Kanban board CRUD
-- drag-and-drop board interactions
-- localStorage persistence
-- demo board loading
-- reset and clear-done actions
-- responsive product-style UI
-- TypeScript cleanup and file-structure polish
-- lint and production build validation
-
-Live demo and screenshots can be added after deployment.
+**Live Demo:** https://taskflow-kanban-kappa.vercel.app/
 
 ---
 
-## Table of Contents
+## Screenshots
 
-- [Overview](#overview)
-- [Core Features](#core-features)
-- [Demo Workflow](#demo-workflow)
-- [Clear Done Behavior](#clear-done-behavior)
-- [Technical Architecture](#technical-architecture)
-- [State and Persistence](#state-and-persistence)
-- [Drag and Drop](#drag-and-drop)
-- [TypeScript Practice](#typescript-practice)
-- [Project Structure](#project-structure)
-- [Tech Stack](#tech-stack)
-- [Running Locally](#running-locally)
-- [Validation](#validation)
-- [MVP Scope](#mvp-scope)
-- [Future Improvements](#future-improvements)
-- [What This Project Demonstrates](#what-this-project-demonstrates)
+### Desktop board overview
+
+<p align="center">
+  <img src="screenshots/taskflow-desktop.png" alt="TaskFlow desktop board overview" width="100%" />
+</p>
+
+### Drag-and-drop interactions
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/drag-and-drop.png" alt="Dragging a card between TaskFlow columns" />
+    </td>
+    <td width="50%">
+      <img src="screenshots/drag-and-drop2.png" alt="Dragging a TaskFlow column" />
+    </td>
+  </tr>
+</table>
+
+### Mobile layout
+
+<p align="center">
+  <img src="screenshots/taskflow-mobile.png" alt="TaskFlow mobile responsive layout" width="360" />
+</p>
 
 ---
 
@@ -95,9 +87,9 @@ Cards support:
 
 ### Local persistence
 
-Board state is saved in browser localStorage, so the board remains available after refresh.
+Board state is saved in browser `localStorage`, so the board remains available after refresh.
 
-The app also shows a saved-locally indicator to make the persistence model clear in the UI.
+The app also shows a **Saved locally** indicator to make the persistence model clear in the UI.
 
 ### Demo board
 
@@ -154,9 +146,9 @@ Done
 
 The demo cards are written around the project itself, including:
 
-- planning scope
+- planning portfolio scope
 - practicing TypeScript concepts
-- building reusable components
+- building reusable board components
 - connecting drag-and-drop interactions
 - checking responsive behavior
 - persisting board data locally
@@ -234,7 +226,7 @@ This keeps the project easy to reason about while still supporting nested drag-a
 
 TaskFlow uses a custom generic `useLocalStorage<T>` hook.
 
-The hook behaves similarly to `useState`, but also persists the value in browser localStorage.
+The hook behaves similarly to `useState`, but also persists the value in browser `localStorage`.
 
 Current use case:
 
@@ -522,8 +514,6 @@ These features are outside the current portfolio MVP scope.
 
 Possible future improvements:
 
-- deploy live version and add link to README
-- add screenshots to README
 - make edit controls more keyboard-accessible
 - add tests for utility functions
 - extract drag-and-drop logic if the app grows
