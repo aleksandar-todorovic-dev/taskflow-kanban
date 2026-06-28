@@ -7,59 +7,69 @@ interface InputProps {
 export const Container = styled.div`
   position: relative;
   display: block;
-  background-color: #fff;
-  border-radius: 7px;
-  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.24);
-  margin-bottom: 8px;
+  background-color: #ffffff;
+  border: 1px solid #d7e0ec;
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 8px 18px rgba(15, 23, 42, 0.03);
+  margin-bottom: 10px;
   min-height: 20px;
-  padding: 10px 38px 10px 10px;
-  color: #172b4d;
+  padding: 12px 40px 12px 13px;
+  color: #172033;
   cursor: pointer;
   transition:
+    border-color 120ms ease,
     background-color 120ms ease,
     box-shadow 120ms ease,
     transform 120ms ease;
 
   &:hover {
-    background-color: #fafbfc;
-    box-shadow: 0 3px 8px rgba(9, 30, 66, 0.22);
+    background-color: #fbfdff;
+    border-color: #bcc9da;
+    box-shadow:
+      0 1px 3px rgba(15, 23, 42, 0.07),
+      0 12px 24px rgba(15, 23, 42, 0.09);
+    transform: translateY(-1px);
   }
 `;
 
 export const Title = styled.div`
-  color: #172b4d;
+  color: #1e293b;
   font-size: 14px;
   line-height: 20px;
+  font-weight: 600;
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: pre-wrap;
 `;
 
 export const Input = styled.textarea<InputProps>`
-  font-family: sans-serif;
+  font-family: inherit;
   min-width: 0;
   width: 100%;
   min-height: 20px;
-  color: #172b4d;
+  color: #172033;
 
   /* Switches between read-like styling and active edit styling. */
   background-color: ${({ $isEditing }) =>
     $isEditing ? "#fff" : "transparent"};
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   box-shadow: ${({ $isEditing }) =>
-    $isEditing ? "inset 0 0 0 2px #0079bf" : "none"};
+    $isEditing ? "inset 0 0 0 1px #818cf8" : "none"};
 
   resize: none;
   font-size: 14px;
   line-height: 20px;
+  font-weight: 600;
   overflow-wrap: anywhere;
   padding: 0;
   display: block;
 
   &:focus {
-    outline: 2px solid #0079bf;
-    outline-offset: 2px;
+    outline: 2px solid rgba(99, 102, 241, 0.32);
+    outline-offset: 1px;
   }
 `;
 
@@ -77,14 +87,20 @@ export const DeleteButton = styled.button`
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 28px;
-  height: 28px;
-  color: #42526e;
-  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  color: #64748b;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
   padding: 0;
-  border-radius: 6px;
+  border-radius: 8px;
   opacity: 0;
   cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease,
+    color 120ms ease,
+    opacity 120ms ease;
 
   /* Reveal the delete button only when the card is hovered. */
   ${Container}:hover &,
@@ -94,12 +110,13 @@ export const DeleteButton = styled.button`
 
   &:hover {
     opacity: 1;
-    color: #172b4d;
-    background-color: rgba(9, 30, 66, 0.08);
+    color: #be123c;
+    background-color: #fff1f2;
+    border-color: #fecdd3;
   }
 
   &:focus-visible {
-    outline: 2px solid #0079bf;
+    outline: 2px solid rgba(99, 102, 241, 0.45);
     outline-offset: 2px;
   }
 `;

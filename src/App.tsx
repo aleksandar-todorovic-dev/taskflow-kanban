@@ -11,10 +11,21 @@ import {
   EmptyStateText,
   EmptyStateTitle,
   Header,
+  HeaderActionHint,
   HeaderActions,
+  HeaderBrand,
+  HeaderBrandText,
   HeaderButton,
+  HeaderButtonRow,
+  HeaderContent,
+  HeaderEyebrow,
+  HeaderLogoMark,
+  HeaderStats,
+  HeaderSubtitle,
   HeaderTitle,
   List,
+  SavedIndicator,
+  Stat,
 } from "./styles";
 import { reorderList, switchCards } from "./utils/listUtils";
 
@@ -44,6 +55,31 @@ const AddNewColumn = () => {
 
 function App() {
   const { columns, setColumns } = useBoard();
+  const totalCards = columns.reduce(
+    (cardCount, column) => cardCount + column.cards.length,
+    0,
+  );
+  const hasDoneCards = columns.some(
+    (column) =>
+      column.title.trim().toLowerCase() === "done" && column.cards.length > 0,
+  );
+
+  const listLabel = columns.length === 1 ? "list" : "lists";
+  const cardLabel = totalCards === 1 ? "card" : "cards";
+  const clearDoneDescription = 'Clear cards from any list titled "Done".';
+  const clearDoneTitle = hasDoneCards
+    ? clearDoneDescription
+    : 'No cards in a "Done" list to clear.';
+
+  const clearDoneCards = () => {
+    setColumns((previousColumns) =>
+      previousColumns.map((column) =>
+        column.title.trim().toLowerCase() === "done"
+          ? { ...column, cards: [] }
+          : column,
+      ),
+    );
+  };
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination, type } = result;
@@ -96,18 +132,60 @@ function App() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Header>
-        <HeaderTitle>Trello Clone</HeaderTitle>
+        <HeaderContent>
+          <HeaderBrand>
+            <HeaderLogoMark aria-hidden="true" />
+            <HeaderBrandText>
+              <HeaderEyebrow>Local Kanban workspace</HeaderEyebrow>
+              <HeaderTitle>TaskFlow</HeaderTitle>
+              <HeaderSubtitle>
+                Plan, prioritize, and move work through a focused board.
+              </HeaderSubtitle>
+            </HeaderBrandText>
+          </HeaderBrand>
+
+          <HeaderStats aria-label="Board summary">
+            <Stat>
+              <strong>{columns.length}</strong>
+              <span>{listLabel}</span>
+            </Stat>
+            <Stat>
+              <strong>{totalCards}</strong>
+              <span>{cardLabel}</span>
+            </Stat>
+            <SavedIndicator>Saved locally</SavedIndicator>
+          </HeaderStats>
+        </HeaderContent>
+
         <HeaderActions>
-          <HeaderButton type="button" onClick={() => setColumns(createDemoBoard())}>
-            Load demo board
-          </HeaderButton>
-          <HeaderButton
-            type="button"
-            $variant="secondary"
-            onClick={() => setColumns([])}
-          >
-            Reset board
-          </HeaderButton>
+          <HeaderButtonRow>
+            <HeaderButton
+              type="button"
+              onClick={() => setColumns(createDemoBoard())}
+            >
+              Load demo board
+            </HeaderButton>
+            <HeaderButton
+              type="button"
+              $variant="secondary"
+              aria-label={clearDoneTitle}
+              title={clearDoneTitle}
+              disabled={!hasDoneCards}
+              onClick={clearDoneCards}
+            >
+              Clear done
+            </HeaderButton>
+            <HeaderButton
+              type="button"
+              $variant="danger"
+              onClick={() => setColumns([])}
+            >
+              Reset board
+            </HeaderButton>
+          </HeaderButtonRow>
+          <HeaderActionHint>
+            Clear done only affects lists titled "Done".
+          </HeaderActionHint>
         </HeaderActions>
       </Header>
 
@@ -132,8 +210,11 @@ function App() {
 
         {columns.length === 0 && (
           <EmptyState>
-            <EmptyStateTitle>No lists yet</EmptyStateTitle>
-            <EmptyStateText>Create your first list to start a board.</EmptyStateText>
+            <EmptyStateTitle>Build your first workflow</EmptyStateTitle>
+            <EmptyStateText>
+              Create a first list below, or load the demo board to explore a
+              ready-made workflow.
+            </EmptyStateText>
           </EmptyState>
         )}
 

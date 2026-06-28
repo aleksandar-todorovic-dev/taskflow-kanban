@@ -13,6 +13,7 @@ import type { ColumnProps, NewColumnProps } from "./types";
 import {
   Button,
   CardList,
+  CardCount,
   Container,
   DeleteButton,
   EditTitleButton,
@@ -134,6 +135,9 @@ const Column: FC<ColumnProps> = ({ id, title, cards, currentIndex }) => {
             {!isEditing && (
               <>
                 <Title>{title}</Title>
+                <CardCount aria-label={`${cards.length} cards`}>
+                  {cards.length}
+                </CardCount>
                 <EditTitleButton onClick={() => setIsEditing(true)} />
               </>
             )}

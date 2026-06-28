@@ -3,6 +3,8 @@
 const PlusIcon = () => {
   return (
     <svg
+      aria-hidden="true"
+      focusable="false"
       fill="none"
       viewBox="0 0 24 24"
       width={20}

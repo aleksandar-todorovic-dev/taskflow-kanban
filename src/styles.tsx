@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface HeaderButtonProps {
-  readonly $variant?: "primary" | "secondary";
+  readonly $variant?: "primary" | "secondary" | "danger";
 }
 
 export const Board = styled.div`
@@ -16,13 +16,23 @@ export const Board = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 
-  padding: 16px;
-  background: linear-gradient(135deg, #1769aa 0%, #25835a 62%, #b56b1e 120%);
+  padding: clamp(16px, 2.2vw, 28px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 168px),
+    linear-gradient(90deg, rgba(71, 85, 105, 0.06) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(71, 85, 105, 0.05) 0 1px, transparent 1px),
+    #e4ebf5;
+  background-size:
+    auto,
+    32px 32px,
+    32px 32px,
+    auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
 
   /* Allows horizontal scrolling when the board has more columns than screen space. */
   overflow-x: auto;
   overflow-y: auto;
-  scrollbar-color: rgba(255, 255, 255, 0.58) rgba(9, 30, 66, 0.2);
+  scrollbar-color: #94a3b8 #dbe3ee;
   scrollbar-width: thin;
 
   /* Custom horizontal scrollbar styling for WebKit-based browsers. */
@@ -32,18 +42,18 @@ export const Board = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(9, 30, 66, 0.2);
+    background: #dbe3ee;
     border-radius: 999px;
     margin: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.58);
+    background: #94a3b8;
     border-radius: 999px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.78);
+    background: #64748b;
   }
 
   &::-webkit-scrollbar-corner {
@@ -51,59 +61,257 @@ export const Board = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding: 10px;
+    padding: 14px;
   }
 `;
 
 export const Header = styled.header`
   flex: 0 0 auto;
-  min-height: 58px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid rgba(9, 30, 66, 0.12);
-  box-shadow: 0 1px 4px rgba(9, 30, 66, 0.08);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%),
+    #f8fafc;
+  border-bottom: 1px solid #dbe3ee;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 10px 20px;
-  color: #172b4d;
+  gap: clamp(18px, 3vw, 36px);
+  padding: 20px clamp(18px, 3vw, 32px);
+  color: #172033;
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     align-items: flex-start;
     flex-direction: column;
-    gap: 10px;
-    padding: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
+    padding: 14px;
   }
 `;
 
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 22px;
+  flex: 1 1 auto;
+  width: 100%;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    gap: 14px;
+  }
+`;
+
+export const HeaderBrand = styled.div`
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 14px;
+`;
+
+export const HeaderLogoMark = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  position: relative;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, 0.52);
+  border-radius: 17px;
+  background:
+    linear-gradient(135deg, rgba(129, 140, 248, 0.28), transparent 48%),
+    #111827;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 16px 30px rgba(30, 41, 59, 0.18);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 13px 12px 12px;
+    border-radius: 10px;
+    background:
+      linear-gradient(#c7d2fe, #c7d2fe) left top / 8px 22px no-repeat,
+      linear-gradient(#38bdf8, #38bdf8) center top / 8px 16px no-repeat,
+      linear-gradient(#e2e8f0, #e2e8f0) right top / 8px 25px no-repeat;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 11px;
+    height: 3px;
+    border-radius: 999px;
+    background-color: rgba(226, 232, 240, 0.34);
+  }
+`;
+
+export const HeaderBrandText = styled.div`
+  min-width: 0;
+`;
+
+export const HeaderEyebrow = styled.p`
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin: 0 0 2px;
+  text-transform: uppercase;
+`;
+
 export const HeaderTitle = styled.h1`
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 700;
+  color: #0f172a;
+  font-size: 29px;
+  line-height: 32px;
+  font-weight: 900;
   margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 25px;
+    line-height: 29px;
+  }
+`;
+
+export const HeaderSubtitle = styled.p`
+  color: #64748b;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 4px 0 0;
+  max-width: 500px;
+`;
+
+export const HeaderStats = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+  padding: 3px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+
+  @media (max-width: 420px) {
+    border-radius: 16px;
+  }
+`;
+
+export const Stat = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 6px 10px;
+
+  & > strong {
+    color: #1e293b;
+    font-size: 13px;
+    font-weight: 800;
+  }
+`;
+
+export const SavedIndicator = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 999px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 16px;
+  padding: 6px 10px;
+
+  &::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #14b8a6;
+    border-radius: 999px;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+  }
 `;
 
 export const HeaderActions = styled.div`
   display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 9px;
+  background-color: #ffffff;
+  border: 1px solid #dbe3ee;
+  border-radius: 16px;
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  padding: 10px;
+
+  @media (max-width: 900px) {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    border-radius: 14px;
+  }
+`;
+
+export const HeaderButtonRow = styled.div`
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: flex-end;
 
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
+export const HeaderActionHint = styled.p`
+  color: #64748b;
+  align-self: stretch;
+  background-color: #f8fafc;
+  border: 1px solid #e8edf5;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 15px;
+  margin: 0;
+  padding: 7px 9px;
+  text-align: left;
+
+  @media (max-width: 900px) {
+    max-width: none;
+  }
+`;
+
 export const HeaderButton = styled.button<HeaderButtonProps>`
-  border-radius: 6px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
   line-height: 18px;
-  min-height: 34px;
-  padding: 8px 12px;
+  min-height: 38px;
+  padding: 9px 14px;
   transition:
+    border-color 120ms ease,
     background-color 120ms ease,
     box-shadow 120ms ease,
     color 120ms ease;
@@ -111,27 +319,68 @@ export const HeaderButton = styled.button<HeaderButtonProps>`
   ${({ $variant = "primary" }) =>
     $variant === "secondary"
       ? `
-        background-color: #f1f2f4;
-        color: #172b4d;
+        background-color: #ffffff;
+        border-color: #dbe3ee;
+        color: #334155;
       `
-      : `
-        background-color: #0c66e4;
-        color: #fff;
-      `}
+      : $variant === "danger"
+        ? `
+          background-color: #fff7f7;
+          border-color: #fecdd3;
+          color: #be123c;
+        `
+        : `
+          background-color: #4f46e5;
+          color: #fff;
+          box-shadow: 0 8px 16px rgba(79, 70, 229, 0.18);
+        `}
 
   &:hover {
     ${({ $variant = "primary" }) =>
       $variant === "secondary"
         ? `
-          background-color: #dcdfe4;
+          background-color: #f8fafc;
+          border-color: #cbd5e1;
+          color: #1e293b;
         `
+        : $variant === "danger"
+          ? `
+            background-color: #fff1f2;
+            border-color: #fda4af;
+          `
+          : `
+            background-color: #4338ca;
+            box-shadow: 0 10px 18px rgba(79, 70, 229, 0.22);
+          `}
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
+    box-shadow: none;
+  }
+
+  &:disabled:hover {
+    ${({ $variant = "primary" }) =>
+      $variant === "secondary"
+        ? `
+          background-color: #ffffff;
+          border-color: #dbe3ee;
+          color: #334155;
+        `
+        : $variant === "danger"
+          ? `
+            background-color: #fff7f7;
+            border-color: #fecdd3;
+            color: #be123c;
+          `
         : `
-          background-color: #0055cc;
+          background-color: #4f46e5;
         `}
   }
 
   &:focus-visible {
-    outline: 2px solid #0c66e4;
+    outline: 2px solid rgba(99, 102, 241, 0.45);
     outline-offset: 2px;
   }
 
@@ -146,30 +395,51 @@ export const List = styled.div`
   flex-wrap: nowrap;
   align-items: flex-start;
   min-height: 100%;
+  padding-bottom: 20px;
 `;
 
 export const EmptyState = styled.section`
   flex: 0 0 var(--board-column-width);
   width: var(--board-column-width);
   align-self: flex-start;
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(9, 30, 66, 0.12);
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(9, 30, 66, 0.14);
-  color: #172b4d;
-  margin-right: 14px;
-  padding: 18px;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%),
+    #ffffff;
+  border: 1px solid #d5deeb;
+  border-radius: 18px;
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.1);
+  color: #172033;
+  margin-right: 16px;
+  padding: 26px;
+
+  &::before {
+    content: "+";
+    display: block;
+    width: 42px;
+    height: 42px;
+    background-color: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(79, 70, 229, 0.12);
+    color: #4f46e5;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 38px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
 `;
 
 export const EmptyStateTitle = styled.h2`
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 8px;
 `;
 
 export const EmptyStateText = styled.p`
-  color: #5e6c84;
+  color: #64748b;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 21px;
   margin: 0;
 `;

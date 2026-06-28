@@ -1,6 +1,6 @@
 /* Global reset keeps spacing and sizing predictable across the app. */
 :root {
-  --board-column-width: clamp(256px, calc(100vw - 32px), 288px);
+  --board-column-width: clamp(264px, calc(100vw - 36px), 304px);
 }
 
 * {
@@ -28,8 +28,8 @@ body {
 
 body {
   min-width: 320px;
-  background: #e9eef5;
-  color: #172b4d;
+  background: #e7edf5;
+  color: #172033;
   font-family:
     Inter,
     ui-sans-serif,
