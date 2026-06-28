@@ -59,8 +59,8 @@ export const Title = styled.h2`
   min-width: 0;
   text-align: start;
   color: #172033;
-  font-size: 15px;
-  line-height: 21px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: 800;
   min-height: 20px;
   overflow-wrap: anywhere;
@@ -100,8 +100,8 @@ export const Input = styled.textarea<InputProps>`
     $isEditing ? "inset 0 0 0 1px #818cf8" : "none"};
 
   resize: none;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: 700;
   min-height: 20px;
   overflow-wrap: anywhere;

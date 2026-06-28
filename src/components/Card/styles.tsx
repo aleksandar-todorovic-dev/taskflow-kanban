@@ -37,8 +37,8 @@ export const Container = styled.div`
 export const Title = styled.div`
   color: #1e293b;
   font-size: 14px;
-  line-height: 20px;
-  font-weight: 600;
+  line-height: 21px;
+  font-weight: 500;
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: pre-wrap;
@@ -61,8 +61,8 @@ export const Input = styled.textarea<InputProps>`
 
   resize: none;
   font-size: 14px;
-  line-height: 20px;
-  font-weight: 600;
+  line-height: 21px;
+  font-weight: 500;
   overflow-wrap: anywhere;
   padding: 0;
   display: block;

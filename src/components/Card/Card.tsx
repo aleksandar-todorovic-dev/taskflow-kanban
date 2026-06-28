@@ -57,6 +57,7 @@ export const NewCard: FC<PropsWithChildren<NewCardProps>> = ({
       <Input
         autoFocus
         ref={ref}
+        name="new-card-title"
         placeholder="Add a title for this card..."
         rows={1}
         value={currentTitle}
@@ -135,6 +136,7 @@ const Card: FC<CardProps> = ({ id, columnId, title, currentIndex }) => {
             <Input
               ref={ref}
               $isEditing
+              name={`card-title-${id}`}
               rows={1}
               value={currentTitle}
               spellCheck={false}

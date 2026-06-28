@@ -63,6 +63,7 @@ export const NewColumn: FC<PropsWithChildren<NewColumnProps>> = ({
         autoFocus
         ref={ref}
         $isEditing
+        name="new-column-title"
         placeholder="Add list title..."
         rows={1}
         value={currentTitle}
@@ -146,6 +147,7 @@ const Column: FC<ColumnProps> = ({ id, title, cards, currentIndex }) => {
               <Input
                 ref={ref}
                 $isEditing
+                name={`column-title-${id}`}
                 rows={1}
                 value={currentTitle}
                 spellCheck={false}

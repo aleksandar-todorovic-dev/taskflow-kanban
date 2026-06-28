@@ -66,10 +66,10 @@ function App() {
 
   const listLabel = columns.length === 1 ? "list" : "lists";
   const cardLabel = totalCards === 1 ? "card" : "cards";
-  const clearDoneDescription = 'Clear cards from any list titled "Done".';
+  const clearDoneDescription = "Clears cards from the Done list.";
   const clearDoneTitle = hasDoneCards
     ? clearDoneDescription
-    : 'No cards in a "Done" list to clear.';
+    : "No cards in the Done list to clear.";
 
   const clearDoneCards = () => {
     setColumns((previousColumns) =>
@@ -183,9 +183,7 @@ function App() {
               Reset board
             </HeaderButton>
           </HeaderButtonRow>
-          <HeaderActionHint>
-            Clear done only affects lists titled "Done".
-          </HeaderActionHint>
+          <HeaderActionHint>Clears cards from the Done list.</HeaderActionHint>
         </HeaderActions>
       </Header>
 

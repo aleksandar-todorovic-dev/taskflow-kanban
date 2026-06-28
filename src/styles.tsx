@@ -184,7 +184,8 @@ export const HeaderTitle = styled.h1`
 export const HeaderSubtitle = styled.p`
   color: #64748b;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 21px;
+  font-weight: 500;
   margin: 4px 0 0;
   max-width: 500px;
 `;
@@ -192,7 +193,7 @@ export const HeaderSubtitle = styled.p`
 export const HeaderStats = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   flex-wrap: wrap;
   flex: 0 0 auto;
   padding: 3px;
@@ -208,18 +209,18 @@ export const HeaderStats = styled.div`
 export const Stat = styled.div`
   display: flex;
   align-items: baseline;
-  gap: 5px;
+  gap: 6px;
   background-color: #ffffff;
   border: 1px solid transparent;
   border-radius: 999px;
   color: #64748b;
-  font-size: 12px;
-  line-height: 16px;
-  padding: 6px 10px;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 7px 11px;
 
   & > strong {
     color: #1e293b;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 800;
   }
 `;
@@ -232,10 +233,10 @@ export const SavedIndicator = styled.span`
   border: 1px solid #99f6e4;
   border-radius: 999px;
   color: #0f766e;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
-  line-height: 16px;
-  padding: 6px 10px;
+  line-height: 18px;
+  padding: 7px 11px;
 
   &::before {
     content: "";
@@ -289,9 +290,9 @@ export const HeaderActionHint = styled.p`
   background-color: #f8fafc;
   border: 1px solid #e8edf5;
   border-radius: 10px;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
   margin: 0;
   padding: 7px 9px;
   text-align: left;

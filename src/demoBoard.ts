@@ -2,20 +2,20 @@ import type { Column } from "./types";
 
 const demoBoard: Column[] = [
   {
-    id: "demo-column-ideas",
-    title: "Ideas",
+    id: "demo-column-backlog",
+    title: "Backlog",
     cards: [
       {
-        id: "demo-card-capture-inspiration",
-        title: "Capture project ideas as cards",
+        id: "demo-card-plan-portfolio-scope",
+        title: "Plan portfolio project scope",
       },
       {
-        id: "demo-card-edit-copy",
-        title: "Edit card text and keep changes after refresh",
+        id: "demo-card-outline-typescript-concepts",
+        title: "Outline key TypeScript concepts",
       },
       {
-        id: "demo-card-drag-columns",
-        title: "Drag columns to reorganize the workflow",
+        id: "demo-card-responsive-checklist",
+        title: "Prepare responsive layout checklist",
       },
     ],
   },
@@ -24,12 +24,30 @@ const demoBoard: Column[] = [
     title: "In Progress",
     cards: [
       {
-        id: "demo-card-polish-responsive",
-        title: "Polish responsive board layout",
+        id: "demo-card-reusable-components",
+        title: "Build reusable board components",
       },
       {
-        id: "demo-card-move-between-lists",
-        title: "Move cards between lists with drag and drop",
+        id: "demo-card-connect-dnd",
+        title: "Connect drag-and-drop interactions",
+      },
+    ],
+  },
+  {
+    id: "demo-column-review",
+    title: "Review",
+    cards: [
+      {
+        id: "demo-card-test-mobile-scrolling",
+        title: "Test mobile board scrolling",
+      },
+      {
+        id: "demo-card-check-wrapping",
+        title: "Check long text wrapping",
+      },
+      {
+        id: "demo-card-accessibility-polish",
+        title: "Review accessibility polish",
       },
     ],
   },
@@ -39,11 +57,15 @@ const demoBoard: Column[] = [
     cards: [
       {
         id: "demo-card-local-storage",
-        title: "Persist board state with localStorage",
+        title: "Persist board state locally",
       },
       {
-        id: "demo-card-delete-items",
-        title: "Delete cards and lists when work is finished",
+        id: "demo-card-demo-reset-actions",
+        title: "Add demo and reset actions",
+      },
+      {
+        id: "demo-card-polish-taskflow-design",
+        title: "Polish TaskFlow visual design",
       },
     ],
   },
